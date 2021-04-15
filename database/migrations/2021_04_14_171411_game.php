@@ -16,8 +16,8 @@ class Game extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->string('thumbnail_url')->unique();
-            $table->string('url')->unique();
+            $table->string('thumbnail_url', 100)->unique();
+            $table->string('url', 100)->unique();
             $table->timestamps();
         });
     }

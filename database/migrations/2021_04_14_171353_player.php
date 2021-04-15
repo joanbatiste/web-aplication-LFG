@@ -15,9 +15,9 @@ class Player extends Migration
     {
         Schema::create('players', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('username')->unique();
+            $table->string('username', 20)->unique();
             $table->string('password');
-            $table->string('email')->unique();
+            $table->string('email', 30)->unique();
             $table->timestamps();
         });
     }

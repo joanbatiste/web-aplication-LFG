@@ -17,11 +17,11 @@ class Message extends Migration
             $table->bigIncrements('id');
             $table->string('message');
             $table->date('creationDate');
-            $table->foreign('idplayer')
+            $table->foreign('idplayer','fk_message_players')
             ->on('players')
             ->references('id')
             ->onDelete('restrict');
-            $table->foreign('idparty')
+            $table->foreign('idparty', 'fk_message_parties')
             ->on('parties')
             ->references('id')
             ->onDelete('restrict');

@@ -1,4 +1,4 @@
-# FROM php:7.3.11
+# FROM php:7.2
 FROM php
 RUN useradd -ms /bin/bash laravel
 RUN apt-get -y update && apt-get install -y git && docker-php-ext-install pdo_mysql

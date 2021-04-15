@@ -17,7 +17,7 @@ class Party extends Model
     }
     public function games () {
         
-        return $this->belongsTo('App\Models\Game','idgame');
+        return $this->belongsTo('App\Models\Game','idgame','id');
             
     }
 }

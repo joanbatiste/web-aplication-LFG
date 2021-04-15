@@ -12,7 +12,7 @@ class Player extends Model
 
     public function parties () {
         
-        return $this->belongsTo('App\Models\Party','idparty');
+        return $this->belongsTo('App\Models\Party','idplayer');
             
     }
     

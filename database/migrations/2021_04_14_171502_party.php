@@ -15,12 +15,12 @@ class Party extends Migration
     {
         Schema::create('parties', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->unique();
-            $table->foreign('idplayer')
+            $table->string('name', 50)->unique();
+            $table->foreign('idplayer','fk_parties_players')
             ->on('players')
             ->references('id')
             ->onDelete('restrict');
-            $table->foreign('idgame')
+            $table->foreign('idgame','fk_parties_games')
             ->on('games')
             ->references('id')
             ->onDelete('restrict');
@@ -35,6 +35,6 @@ class Party extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('parties');
     }
 }
