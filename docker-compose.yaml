@@ -13,9 +13,9 @@ services:
             MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
         expose:
             - '3306'
-        volumes: 
-            - ./usr/local/mysql/data
-   
+        volumes:
+            - ./db:/var/lib/mysql/data
+            
     phpmyadmin:
         image: phpmyadmin
         depends_on:
@@ -47,21 +47,13 @@ services:
             MYSQL_ROOT_PASSWORD: "password"
         volumes:
             - '.:/var/www/html'
-        # networks:
-        #     - sail
-        # depends_on:
-        #     - mysql
-
-    # react:
-    #     container_name: react
-    #     build:
-    #         context: builds/node-custom
-    #     command: npm start
-    #     restart: always
-    #     ports:
-    #         - 3000:3000
-    #     volumes:
-    #         - ../../source/react/app:/app
-
-
-
+        # react:
+        #     container_name: react
+        #     build:
+        #         context: builds/node-custom
+        #     command: npm start
+        #     restart: always
+        #     ports:
+        #         - 3000:3000
+        #     volumes:
+        #         - '.:/var/www/html'
