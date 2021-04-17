@@ -15,13 +15,16 @@ class Message extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('message');
+            $table->string('title', 200);
+            $table->string('text', 200);
             $table->date('creationDate');
-            $table->foreign('idplayer','fk_message_players')
+            $table->unsignedBigInteger('idplayer');
+            $table->unsignedBigInteger('idparty');
+            $table->foreign('idplayer','fk_messages_players')
             ->on('players')
             ->references('id')
             ->onDelete('restrict');
-            $table->foreign('idparty', 'fk_message_parties')
+            $table->foreign('idparty', 'fk_messages_parties')
             ->on('parties')
             ->references('id')
             ->onDelete('restrict');

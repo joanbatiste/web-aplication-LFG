@@ -10,10 +10,15 @@ class Player extends Model
     use HasFactory;
     protected $fillable = ['username','password','email'];
 
+    // Realaciíon pertenencia de un player a una party
     public function parties () {
         
-        return $this->belongsTo('App\Models\Party','idplayer');
+        return $this->belongsTo('App\Models\Party','idparty','id');
             
+    }
+    // Relación de propiedad de un player de muchos mensajes
+    public function messages () {
+        return $this->hasMany('App\Models\Message', 'idplayer');
     }
     
 }

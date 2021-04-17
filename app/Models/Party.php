@@ -12,12 +12,16 @@ class Party extends Model
 
     public function players () {
         
-        return $this->hasMany('App\Models\Player','idplayer');
+        return $this->hasMany('App\Models\Player','idparty');
             
     }
     public function games () {
         
         return $this->belongsTo('App\Models\Game','idgame','id');
             
+    }
+    // Relación de propiedad de una party de muchos mensajes
+    public function messages () {
+        return $this->hasMany('App\Models\Message', 'idparty');
     }
 }

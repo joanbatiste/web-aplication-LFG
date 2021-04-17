@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\PlayerController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// Route::group(['middleware'=> ['cors']], function (){
+
+       
+
+// });
+//Rutas Contrtoladoras de Players
+Route::post('/register',[PlayerController::class, 'registerPlayer']);

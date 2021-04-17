@@ -8,16 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Message extends Model
 {
     use HasFactory;
-    protected $fillable = ['message', 'creationDate'];
+    protected $fillable = ['title', 'text', 'creationDate'];
 
     public function players () {
         
-        return $this->belongsTo('App\Models\Player','idplayer');
+        return $this->belongsTo('App\Models\Player','idplayer','id');
             
     }
     public function parties () {
         
-        return $this->belongsTo('App\Models\Party','idparty');
+        return $this->belongsTo('App\Models\Party','idparty','id');
             
     }
 }

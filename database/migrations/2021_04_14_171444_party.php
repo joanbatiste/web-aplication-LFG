@@ -16,6 +16,8 @@ class Party extends Migration
         Schema::create('parties', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 50)->unique();
+            $table->unsignedBigInteger('idplayer');
+            $table->unsignedBigInteger('idgame');
             $table->foreign('idplayer','fk_parties_players')
             ->on('players')
             ->references('id')
