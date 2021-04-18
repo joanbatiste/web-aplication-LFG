@@ -7,7 +7,6 @@ use App\Models\Player;
 use Facade\Ignition\QueryRecorder\Query;
 use Illuminate\Database\QueryException;
 
-
 use Illuminate\Support\Facades\Hash;
 
 class PlayerController extends Controller

@@ -14,7 +14,7 @@ services:
         expose:
             - '3306'
         volumes:
-            - ./db:/var/lib/mysql/data
+            - ./usr/local/mysql/data
             
     phpmyadmin:
         image: phpmyadmin
@@ -41,10 +41,11 @@ services:
             - 8000:8000
         environment: 
             docker: 'true'
-            MYSQL_HOST: "mysql"
-            MYSQL_DATABASE: "laravel"
-            MYSQL_USER: "root"
-            MYSQL_ROOT_PASSWORD: "password"
+            MYSQL_HOST: mysql
+            MYSQL_DATABASE: laravel
+            MYSQL_USER: root
+            MYSQL_ROOT_PASSWORD: password
+            APP_DEBUG: 'true'
         volumes:
             - '.:/var/www/html'
         # react:
