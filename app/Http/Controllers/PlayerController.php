@@ -7,7 +7,6 @@ use App\Models\Player;
 use Facade\Ignition\QueryRecorder\Query;
 use Illuminate\Database\QueryException;
 
-
 use Illuminate\Support\Facades\Hash;
 
 class PlayerController extends Controller
@@ -40,7 +39,7 @@ class PlayerController extends Controller
         }
 
     }
-
+    //Funcion para el logueo de usuarios
     public function loginPlayer(Request $request){
 
         $username = $request->input('username');
@@ -69,7 +68,7 @@ class PlayerController extends Controller
 
                 //Guardamos el token en su campo correspondiente, esto es opcional si guardamos el token en la base de datos
                 Player::where('username', $username)
-                ->update(['token'=>$token]);
+                ->update(['api_token'=>$token]);
 
                 //devolvemos la informacion del player logueado
                 return Player::where('username', 'LIKE', $username)
@@ -83,6 +82,44 @@ class PlayerController extends Controller
         }catch (QueryException $error){
             return response()->$error;
         }
+    }
+    //Funcion para actualizar datos de usuario
+    public function updatePlayer(Request $request){
+
+        $username = $request->input('username');
+        $password = $request->input('password');
+        $email = $request->input('email');
+
+        try {
+
+            return Player::where('username', '===', $username)
+            ->update([
+                'username' => $username,
+                'password' => $password,
+                'email' => $email
+            ]);
+
+
+        } catch(QueryException $error) {
+            return $error;
+        }
+    }
+
+    //Funcion para desloguearse un usuario
+    public function logoutPlayer(Request $request){
+
+        $id = $request->input('id');
+
+        try {
+
+            return Player::where('id', '=', $id)
+            ->update(['api_token' => '']);
+            
+
+        } catch(QueryException $error){
+            return $error;
+        }
+
     }
 
 }
