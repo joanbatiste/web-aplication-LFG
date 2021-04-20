@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\GameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,7 @@ use App\Http\Controllers\PlayerController;
 
 // });
 //Rutas Contrtoladoras de Players
-Route::post('/register',[PlayerController::class, 'registerPlayer']);
+Route::post('/player/register',[PlayerController::class, 'registerPlayer']);
+Route::post('/player/login',[PlayerController::class, 'loginPlayer']);
+
+Route::post('/game/register',[GameController::class, 'registerGame']);

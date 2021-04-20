@@ -8,7 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Player extends Model
 {
     use HasFactory;
-    protected $fillable = ['username','password','email'];
+    protected $fillable = [
+        'username',
+        'password',
+        'email',
+        'token'
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 
     // Realaciíon pertenencia de un player a una party
     public function parties () {
