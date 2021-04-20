@@ -29,7 +29,7 @@ class PlayerController extends Controller
                 'password' => $password,
                 'email' => $email
             ]);
-        } catch (QueryExeption $error){
+        } catch (QueryException $error){
             $eCode = $error->errorInfo[1];
 
             if($eCode == 1062){
@@ -75,7 +75,7 @@ class PlayerController extends Controller
                 return Player::where('username', 'LIKE', $username)
                 ->get();
             }else{
-                return reponse()->json([
+                return response()->json([
                     'error'=>'Username o password incorrecto'
                 ]);
             }

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\PartyController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +33,6 @@ Route::post('/player/register',[PlayerController::class, 'registerPlayer']);
 Route::post('/player/login',[PlayerController::class, 'loginPlayer']);
 
 Route::post('/game/register',[GameController::class, 'registerGame']);
+
+//Rutas controladoras de Parties
+Route::post('/party',[PartyController::class, 'createParty']);
