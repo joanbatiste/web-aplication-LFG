@@ -23,7 +23,7 @@ class GameController extends Controller
                 'thumbnail_url' => $thumbnail_url,
                 'url' => $url
             ]);
-        } catch (QueryExeption $error){
+        } catch (QueryException $error){
             $eCode = $error->errorInfo[1];
 
             if($eCode == 1062){
