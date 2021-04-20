@@ -27,5 +27,7 @@ use App\Http\Controllers\GameController;
 
 // });
 //Rutas Contrtoladoras de Players
-Route::post('/register',[PlayerController::class, 'registerPlayer']);
-Route::post('/game',[GameController::class, 'registerGame']);
+Route::post('/player/register',[PlayerController::class, 'registerPlayer']);
+Route::post('/player/login',[PlayerController::class, 'loginPlayer']);
+
+Route::post('/game/register',[GameController::class, 'registerGame']);
