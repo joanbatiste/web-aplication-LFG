@@ -9,7 +9,8 @@ use Illuminate\Database\QueryException;
 class GameController extends Controller
 {
     //Función encargada de registrar un nuevo juego
-    public function registerGame(Request $request){
+    public function registerGame(Request $request)
+    {
 
         //username, password, email
         $title = $request->input('title');
@@ -17,21 +18,20 @@ class GameController extends Controller
         $url = $request->input('url');
 
 
-        try{
+        try {
             return Game::create([
                 'title' => $title,
                 'thumbnail_url' => $thumbnail_url,
                 'url' => $url
             ]);
-        } catch (QueryException $error){
+        } catch (QueryException $error) {
             $eCode = $error->errorInfo[1];
 
-            if($eCode == 1062){
+            if ($eCode == 1062) {
                 return response()->json([
-                    'error'=> "Juego ya registrado"
+                    'error' => "Juego ya registrado"
                 ]);
             }
         }
-
     }
 }
