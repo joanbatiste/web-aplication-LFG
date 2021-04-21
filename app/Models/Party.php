@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Party extends Model
 {
     use HasFactory;
-    protected $fillable = ['name'];
+    protected $fillable = ['name','idplayer', 'idgame'];
 
     public function players()
     {

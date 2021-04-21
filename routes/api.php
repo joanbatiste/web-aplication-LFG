@@ -33,8 +33,8 @@ use App\Http\Controllers\MessageController;
 Route::post('/players/register', [PlayerController::class, 'registerPlayer']);
 Route::post('/players/login', [PlayerController::class, 'loginPlayer']);
 
+//Games
 Route::post('/game/register', [GameController::class, 'registerGame']);
-Route::post('/party', [PartyController::class, 'createParty']);
 
 //Rutas controladoras de Parties
 Route::middleware('auth:api')->group(function () {
@@ -54,8 +54,6 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/games/{id}/parties', [PartyController::class, 'createParty']);
     Route::get('/games/{id}/parties', [PartyController::class, 'findParty']);
     Route::get('/parties/{id}', [PartyController::class, 'deleteParty']);
-
-    //Games
 
     //Message
     Route::post('/parties/{id}/messages', [MessageController::class, 'createMessageParty']);
