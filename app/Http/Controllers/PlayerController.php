@@ -86,10 +86,6 @@ class PlayerController extends Controller
     //Funcion para actualizar datos de usuario
     public function updatePlayer(Request $request, $id)
     {
-        
-        
-        
-        
         $player = $request->user();
         if ($player['id'] != $id) {
             return response()->json([
@@ -110,26 +106,7 @@ class PlayerController extends Controller
         } catch(QueryException $error) {
              return $error;
         }
-        // $id = $request->input('id');
-        // $username = $request->input('username');
-        // $password = $request->input('password');
-        // $email = $request->input('email');
-
-        // $password = Hash::make($password);
-
-        // if($player['id'] != $id)
-
-        // try {
-
-        //     return Player::where('id', '=', $id)
-        //         ->update([
-        //             'username' => $username,
-        //             'password' => $password,
-        //             'email' => $email
-        //         ]);
-        // } catch (QueryException $error) {
-        //     return $error;
-        // }
+        
     }
 
     //Funcion para desloguearse un usuario

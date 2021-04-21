@@ -11,7 +11,7 @@ use App\Models\Party;
 class MessageController extends Controller
 {
     //Creo los mensajes
-    public function createMessage(Request $request)
+    public function createMessageParty(Request $request)
     {
         $message = $request->input('message');
         $idplayer = $request->input('idplayer');
