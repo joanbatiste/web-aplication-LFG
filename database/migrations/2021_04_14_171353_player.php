@@ -18,7 +18,7 @@ class Player extends Migration
             $table->string('username', 20)->unique();
             $table->string('password');
             $table->string('email', 30)->unique();
-            $table->string('token')->nullable();
+            $table->string('api_token')->nullable();
             $table->timestamps();
         });
     }
