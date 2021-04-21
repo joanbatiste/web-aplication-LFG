@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Player;
-use Facade\Ignition\QueryRecorder\Query;
+
 use Illuminate\Database\QueryException;
 
 use Illuminate\Support\Facades\Hash;
@@ -84,24 +84,52 @@ class PlayerController extends Controller
         }
     }
     //Funcion para actualizar datos de usuario
-    public function updatePlayer(Request $request)
+    public function updatePlayer(Request $request, $id)
     {
-
-        $username = $request->input('username');
-        $password = $request->input('password');
-        $email = $request->input('email');
-
-        try {
-
-            return Player::where('username', '===', $username)
-                ->update([
-                    'username' => $username,
-                    'password' => $password,
-                    'email' => $email
-                ]);
-        } catch (QueryException $error) {
-            return $error;
+        
+        
+        
+        
+        $player = $request->user();
+        if ($player['id'] != $id) {
+            return response()->json([
+                'error' => "No estas autorizado a  modificar estos datos."
+            ]);
         }
+        try {
+            $username = $request->input('username');
+            $password = $request->input('password');
+            $email = $request->input('email');
+            $password = Hash::make($password);
+            
+            return Player::find($id)->update([
+                'username'=>$username,
+                'password'=>$password,
+                'email'=>$email
+            ]);
+        } catch(QueryException $error) {
+             return $error;
+        }
+        // $id = $request->input('id');
+        // $username = $request->input('username');
+        // $password = $request->input('password');
+        // $email = $request->input('email');
+
+        // $password = Hash::make($password);
+
+        // if($player['id'] != $id)
+
+        // try {
+
+        //     return Player::where('id', '=', $id)
+        //         ->update([
+        //             'username' => $username,
+        //             'password' => $password,
+        //             'email' => $email
+        //         ]);
+        // } catch (QueryException $error) {
+        //     return $error;
+        // }
     }
 
     //Funcion para desloguearse un usuario

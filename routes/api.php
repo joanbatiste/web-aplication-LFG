@@ -26,38 +26,39 @@ use App\Http\Controllers\MessageController;
 
 // Route::group(['middleware'=> ['cors']], function (){
 
-
+       
 
 // });
 //Rutas Contrtoladoras de Players
-Route::post('/players/register', [PlayerController::class, 'registerPlayer']);
-Route::post('/players/login', [PlayerController::class, 'loginPlayer']);
+Route::post('/players/register',[PlayerController::class, 'registerPlayer']);
+Route::post('/players/login',[PlayerController::class, 'loginPlayer']);
 
-//Games
-Route::post('/game/register', [GameController::class, 'registerGame']);
+Route::post('/game/register',[GameController::class, 'registerGame']);
 
-//Rutas controladoras de Parties
-Route::middleware('auth:api')->group(function () {
+Route::middleware('auth:api')->group(function(){
     //Player
-    Route::post('/players/logout', [PlayerController::class, 'logoutPlayer']);
-    Route::put('/players/update', [PlayerController::class, 'updatePlayer']);
+    Route::post('/players/logout',[PlayerController::class, 'logoutPlayer']);
+    Route::put('/players/{id}',[PlayerController::class, 'updatePlayer']);
 
     //Membership
-    Route::post('/players/{id}/parties', [MembershipController::class, 'getPartiesPlayer']);
-    Route::post('/parties/{id}/players', [MembershipController::class, 'getPlayersParty']);
-    Route::put('players/{player_id}/parties/{party_id}', [MembershipController::class, 'createPlayerParty']);
-    Route::put('parties/{party_id}/players/{player_id}', [MembershipController::class, 'createPartyPlayer']);
+    Route::post('/players/{id}/parties',[MembershipController::class, 'getPartiesPlayer']);
+    Route::post('/parties/{id}/players',[MembershipController::class, 'getPlayersParties']);
+    Route::put('players/{player_id}/parties/{party_id}', [MembershipController::class, 'newMembership']);
+    Route::put('parties/{party_id}/players/{player_id}', [MembershipController::class, 'newMembershipSym']);
     Route::delete('players/{player_id}/parties/{party_id}', [MembershipController::class, 'deletePlayerParty']);
     Route::delete('parties/{party_id}/players/{player_id}', [MembershipController::class, 'deletePartiesPlayers']);
-
+    
     //Parties
-    Route::post('/games/{id}/parties', [PartyController::class, 'createParty']);
-    Route::get('/games/{id}/parties', [PartyController::class, 'findPartyByGame']);
-    Route::get('/parties/{id}', [PartyController::class, 'deleteParty']);
+    
+    Route::post('/games/{id}/parties',[PartyController::class, 'createParty']);
+    Route::get('/games/{id}/parties',[PartyController::class, 'findPartyByGame']);
+    Route::delete('/parties/{id}',[PartyController::class, 'deleteParty']);
+
+    //Games
 
     //Message
-    Route::post('/messages', [MessageController::class, 'createMessageParty']);
-    Route::get('/parties/{id}/messages', [MessageController::class, 'getMessageParty']);
-    Route::put('/messages/{id}', [MessageController::class, 'updateMessage']);
-    Route::delete('/messages/{id}', [MessageController::class, 'deleteMessage']);
+    Route::get('/parties/{id}/messages',[MessageController::class, 'getMessageParty']);
+    Route::post('/parties/{id}/messages',[MessageController::class, 'createMessageParty']);
+    Route::put('/messages/{id}',[MessageController::class, 'updateMessage']);
+    Route::delete('/messages/{id}',[MessageController::class, 'deleteMessage']);
 });

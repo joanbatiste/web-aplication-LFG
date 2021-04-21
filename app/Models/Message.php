@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Message extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'text', 'creationDate'];
+    protected $fillable = ['message'];
 
     public function players()
     {

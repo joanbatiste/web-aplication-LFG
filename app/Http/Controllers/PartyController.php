@@ -47,9 +47,11 @@ class PartyController extends Controller
 
     //Eliminar partida
     public function deleteParty(Request $request, $id){
-        $idplayer = $request->input('idplayer');
+        $player = $request->user();
+        $idplayer = $player['id'];
         $party = Party::find($id);
-        if(!$id){
+
+        if(!$party){
             return response()->json([
                 'error'=>'La party que quieres borrar no existe'
             ]);
