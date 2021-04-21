@@ -23,7 +23,7 @@ class MembershipController extends Controller
             $membership = Membership::where('player_id', $id)
                 ->join('parties', 'parties.id', 'memberships.party_id')
                 ->join('games', 'games.id', 'parties.game_id')->get();
-            $ownership = $user->parties()->join('games', 'games.id', 'parties.game_id')->get();
+            $ownership = $player->parties()->join('games', 'games.id', 'parties.game_id')->get();
             return [...$membership,...$ownership];
         }catch(QueryException $error){
             return $error;
