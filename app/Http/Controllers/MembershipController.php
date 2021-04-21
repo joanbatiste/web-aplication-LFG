@@ -74,7 +74,7 @@ class MembershipController extends Controller
         $player = $request->player();
         if($player['id'] != $player_id){
             return response()->json([
-                'error' => "No autorizado a realizar esta acción";
+                'error' => "No autorizado a realizar esta acción"
             ]);
         }
         try{
