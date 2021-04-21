@@ -37,15 +37,33 @@ class MessageController extends Controller
     //Editar Mensaje
     public function updateMessage(Request $request, $id)
     {
+        $request->validate([
+            'message' => 'required|string|min:1',
+        ]);
+        
         $player = $request->player();
-        $message = Message->input('message');
+        $message = Message::find($id);
+
+        if(!$message){
+            return response()->json([
+                'error' => "El mensaje no existe."
+            ]);
+        }
+
+        if($message['player_id'] != $player['id']){
+            return response()->json([
+                'error' => "No estas autorizado para esta acción"
+            ]);
+        }
 
         try {
-            return Message::where('id', '=', $id)
-                ->update(['message' => $message]);
-        } catch (QueryException $error) {
+            return $message->update([
+                "message" => $request->message,
+                "edited" => true
+            ]);
+        }catch (QueryException $error) {
             return $error;
-        }
+        };
     }
 
     //Borrar Mensaje
