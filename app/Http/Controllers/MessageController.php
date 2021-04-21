@@ -26,11 +26,9 @@ class MessageController extends Controller
         } catch (QueryException $error) {
             $eCode = $error->errorInfo[1];
 
-            if ($eCode == 1062) {
-                return response()->json([
-                    'error' => 'El mensaje no se ha podido crear'
-                ]);
-            };
+            return response()->json([
+                'error' => 'El mensaje no se ha podido crear'.$error
+            ]);
         }
     }
 
@@ -40,17 +38,17 @@ class MessageController extends Controller
         $request->validate([
             'message' => 'required|string|min:1',
         ]);
-        
-        $player = $request->player();
+
+        $player = $request->user();
         $message = Message::find($id);
 
-        if(!$message){
+        if (!$message) {
             return response()->json([
                 'error' => "El mensaje no existe."
             ]);
         }
 
-        if($message['player_id'] != $player['id']){
+        if ($message['idplayer'] != $player['id']) {
             return response()->json([
                 'error' => "No estas autorizado para esta acción"
             ]);
@@ -61,7 +59,7 @@ class MessageController extends Controller
                 "message" => $request->message,
                 "edited" => true
             ]);
-        }catch (QueryException $error) {
+        } catch (QueryException $error) {
             return $error;
         };
     }
@@ -69,7 +67,7 @@ class MessageController extends Controller
     //Borrar Mensaje
     public function deleteMessage(Request $request, $id)
     {
-        $player = $request->player();
+        $player = $request->user();
         $message = Message::find($id);
 
         if (!$message) {
@@ -77,7 +75,7 @@ class MessageController extends Controller
                 'error' => "El mesaje no existe."
             ]);
         }
-        if ($message['player_id'] != $player['id']) {
+        if ($message['idplayer'] != $player['id']) {
             return response()->json([
                 'error' => "No esta autorizado."
             ]);
@@ -98,7 +96,7 @@ class MessageController extends Controller
     }
 
     //Traer todos los mensajes
-    public function getMessageParty($id)
+    public function getMessage($id)
     {
         try {
             return Message::all()->where('idparty', '=', $id);

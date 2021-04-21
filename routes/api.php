@@ -43,13 +43,12 @@ Route::middleware('auth:api')->group(function(){
     //Membership
     Route::post('/players/{id}/parties',[MembershipController::class, 'getPlayersParties']);
     Route::post('/parties/{id}/players',[MembershipController::class, 'getPartyPlayers']);
-    Route::put('players/{idplayer}/parties/{idparty}', [MembershipController::class, 'newMembership']);
-    Route::put('parties/{idparty}/players/{idplayer}', [MembershipController::class, 'newMembershipSym']);
-    Route::delete('players/{idplayer}/parties/{idparty}', [MembershipController::class, 'deletePlayerParty']);
-    Route::delete('parties/{idparty}/players/{idplayer}', [MembershipController::class, 'deletePartiesPlayers']);
+    Route::put('/players/{idplayer}/parties/{idparty}', [MembershipController::class, 'newMembership']);
+    Route::put('/parties/{idparty}/players/{idplayer}', [MembershipController::class, 'newMembershipSym']);
+    Route::delete('/players/{idplayer}/parties/{idparty}', [MembershipController::class, 'deletePlayerParty']);
+    Route::delete('/parties/{idparty}/players/{idplayer}', [MembershipController::class, 'deletePartiesPlayers']);
     
     //Parties
-    
     Route::post('/games/{idgame}/parties',[PartyController::class, 'createParty']);
     Route::get('/games/{id}/parties',[PartyController::class, 'findPartyByGame']);
     Route::delete('/parties/{id}',[PartyController::class, 'deleteParty']);
@@ -57,8 +56,8 @@ Route::middleware('auth:api')->group(function(){
     //Games
 
     //Message
-    Route::get('/parties/{id}/messages',[MessageController::class, 'getMessageParty']);
-    Route::post('/parties/{id}/messages',[MessageController::class, 'createMessageParty']);
+    Route::post('/parties/{id}/messages',[MessageController::class, 'createMessage']);
+    Route::get('/parties/{id}/messages',[MessageController::class, 'getMessage']);
     Route::put('/messages/{id}',[MessageController::class, 'updateMessage']);
     Route::delete('/messages/{id}',[MessageController::class, 'deleteMessage']);
 });

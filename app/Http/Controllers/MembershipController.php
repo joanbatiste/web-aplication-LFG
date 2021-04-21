@@ -12,7 +12,7 @@ class MembershipController extends Controller
     //
     public function getPartyPlayers(Request $request, $id)
     {
-        $player = $request->player();
+        $player = $request->user();
 
         if($player['id'] != $id){
             return response()->json([
@@ -45,7 +45,7 @@ class MembershipController extends Controller
 
     public function createPlayerParty(Request $request, $idplayer, $idparty)
     {
-        $player = $request->player();
+        $player = $request->user();
 
         if($player['id'] != $idplayer){
             return response()->json([
@@ -71,7 +71,7 @@ class MembershipController extends Controller
 
     public function deletePlayerParty(Request $request, $idplayer, $idparty)
     {
-        $player = $request->player();
+        $player = $request->user();
         if($player['id'] != $idplayer){
             return response()->json([
                 'error' => "No autorizado a realizar esta acción"
