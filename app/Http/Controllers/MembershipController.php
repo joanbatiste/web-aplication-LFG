@@ -10,7 +10,7 @@ use App\Models\Party;
 class MembershipController extends Controller
 {
     //
-    public function getPartiesPlayer(Request $request, $id)
+    public function getPartyPlayers(Request $request, $id)
     {
         $player = $request->player();
 

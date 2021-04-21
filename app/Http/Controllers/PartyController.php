@@ -44,4 +44,29 @@ class PartyController extends Controller
             return $error;
         }
     }
+
+    //Eliminar partida
+    public function deleteParty(Request $request, $id){
+        $player = $request->user();
+        $idplayer = $player['id'];
+        $party = Party::find($id);
+
+        if(!$party){
+            return response()->json([
+                'error'=>'La party que quieres borrar no existe'
+            ]);
+        }
+        if($party['idplayer'] != $idplayer){
+            return response()->json([
+                'error'=>'No puedes eliminar una party que no es tuya'
+            ]);
+        }
+        
+        try{
+           return $party
+           ->delete();
+        }catch(QueryException $error){
+            return $error;
+        }
+    }
 }
