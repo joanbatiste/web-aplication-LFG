@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Models\Message;
+use App\Models\Membership;
+use App\Models\Party;
 
 class MessageController extends Controller
 {
@@ -33,31 +35,60 @@ class MessageController extends Controller
     }
 
     //Editar Mensaje
-    public function modifyMessage(Request $request)
+    public function updateMessage(Request $request, $id)
     {
-        $id = $request->input('id');
-        $message = $request->input('message');
+        $request->validate([
+            'message' => 'required|string|min:1',
+        ]);
+        
+        $player = $request->player();
+        $message = Message::find($id);
+
+        if(!$message){
+            return response()->json([
+                'error' => "El mensaje no existe."
+            ]);
+        }
+
+        if($message['player_id'] != $player['id']){
+            return response()->json([
+                'error' => "No estas autorizado para esta acción"
+            ]);
+        }
 
         try {
-            return Message::where('id', '=', $id)
-                ->update(['message' => $message]);
-        } catch (QueryException $error) {
+            return $message->update([
+                "message" => $request->message,
+                "edited" => true
+            ]);
+        }catch (QueryException $error) {
             return $error;
-        }
+        };
     }
 
     //Borrar Mensaje
-    public function deleteMessage(Request $request)
+    public function deleteMessage(Request $request, $id)
     {
-        $idparty = $request->input('idparty');
+        $player = $request->player();
+        $message = Message::find($id);
+
+        if (!$message) {
+            return response()->json([
+                'error' => "El mesaje no existe."
+            ]);
+        }
+        if ($message['player_id'] != $player['id']) {
+            return response()->json([
+                'error' => "No esta autorizado."
+            ]);
+        }
 
         try {
             return Message::destroy([
-                'idparty' => $idparty,
+                'id' => $id,
             ]);
         } catch (QueryException $error) {
             $eCode = $error->errorInfo[1];
-
             if ($eCode == 1062) {
                 return response()->json([
                     'error' => "El mensaje no se pudo eliminar"
@@ -67,7 +98,7 @@ class MessageController extends Controller
     }
 
     //Traer todos los mensajes
-    public function sendMessageParty($id)
+    public function getMessageParty($id)
     {
         try {
             return Message::all()->where('idparty', '=', $id);
