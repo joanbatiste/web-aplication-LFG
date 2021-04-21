@@ -15,7 +15,7 @@ class Message extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('message', 200);
+            $table->string('message', 1000);
             $table->unsignedBigInteger('idplayer');
             $table->unsignedBigInteger('idparty');
             $table->foreign('idplayer','fk_messages_players')

@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Player;
-
 use Illuminate\Database\QueryException;
-
 use Illuminate\Support\Facades\Hash;
 
 class PlayerController extends Controller
@@ -87,24 +85,27 @@ class PlayerController extends Controller
     public function updatePlayer(Request $request, $id)
     {
         $player = $request->user();
+
         if ($player['id'] != $id) {
             return response()->json([
                 'error' => "No estas autorizado a  modificar estos datos."
             ]);
         }
+
         try {
             $username = $request->input('username');
             $password = $request->input('password');
             $email = $request->input('email');
-            $password = Hash::make($password);
             
+            $password = Hash::make($password);
+
             return Player::find($id)->update([
-                'username'=>$username,
-                'password'=>$password,
-                'email'=>$email
+                'username' => $username,
+                'password' => $password,
+                'email' => $email
             ]);
-        } catch(QueryException $error) {
-             return $error;
+        } catch (QueryException $error) {
+            return $error;
         }
         
     }

@@ -10,9 +10,9 @@ use App\Models\Party;
 class MembershipController extends Controller
 {
     //
-    public function getPartiesPlayer(Request $request, $id)
+    public function getPartyPlayers(Request $request, $id)
     {
-        $player = $request->player();
+        $player = $request->user();
 
         if($player['id'] != $id){
             return response()->json([
@@ -20,10 +20,10 @@ class MembershipController extends Controller
             ]);
         }
         try {
-            $membership = Membership::where('player_id', $id)
-                ->join('parties', 'parties.id', 'memberships.party_id')
-                ->join('games', 'games.id', 'parties.game_id')->get();
-            $ownership = $player->parties()->join('games', 'games.id', 'parties.game_id')->get();
+            $membership = Membership::where('idplayer', $id)
+                ->join('parties', 'parties.id', 'memberships.idparty')
+                ->join('games', 'games.id', 'parties.idgame')->get();
+            $ownership = $player->parties()->join('games', 'games.id', 'parties.idgame')->get();
             return [...$membership,...$ownership];
         }catch(QueryException $error){
             return $error;
@@ -33,8 +33,8 @@ class MembershipController extends Controller
     public function getPlayersParty(Request $request, $id)
     {
         try{
-            $membership = Membership::where('party_id', $id)
-                ->join('players', 'players.id', '=', 'memberships.player_id')
+            $membership = Membership::where('idparty', $id)
+                ->join('players', 'players.id', '=', 'memberships.idplayer')
                 ->select(['username'])->get();
             $ownership = Party::find($id)->player()->select(['username'])->get();
             return [...$membership,...$ownership]; 
@@ -43,11 +43,11 @@ class MembershipController extends Controller
         }
     }
 
-    public function createPlayerParty(Request $request, $player_id, $party_id)
+    public function createPlayerParty(Request $request, $idplayer, $idparty)
     {
-        $player = $request->player();
+        $player = $request->user();
 
-        if($player['id'] != $player_id){
+        if($player['id'] != $idplayer){
             return response()->json([
                 'error' => "No estas autorizado a crear un nuevo membership"
             ]);
@@ -55,8 +55,8 @@ class MembershipController extends Controller
         try{
             return response()->json(
                 Membership::create([
-                    "player_id" => $player_id,
-                    "party_id" => $party_id,
+                    "idplayer" => $idplayer,
+                    "idparty" => $idparty,
                 ])
                 );
         }catch(QueryException $error){
@@ -64,29 +64,29 @@ class MembershipController extends Controller
         }
     }
 
-    public function createPartyPlayer(Request $request, $party_id, $player_id)
+    public function createPartyPlayer(Request $request, $idparty, $idplayer)
     {
-        return $this->createPlayerParty($request, $player_id, $party_id);
+        return $this->createPlayerParty($request, $idplayer, $idparty);
     }
 
-    public function deletePlayerParty(Request $request, $player_id, $party_id)
+    public function deletePlayerParty(Request $request, $idplayer, $idparty)
     {
-        $player = $request->player();
-        if($player['id'] != $player_id){
+        $player = $request->user();
+        if($player['id'] != $idplayer){
             return response()->json([
                 'error' => "No autorizado a realizar esta acción"
             ]);
         }
         try{
-            return Membership::where('player_id', $player_id)
-                ->where('party_id', $party_id)
+            return Membership::where('idplayer', $idplayer)
+                ->where('idparty', $idparty)
                 ->delete();
         }catch(QueryException $error){
             return $error;
         }
     }
-    public function deletePartyPlayer(Request $request, $party_id, $player_id)
+    public function deletePartyPlayer(Request $request, $idparty, $idplayer)
     {
-        return $this->delete($request, $player_id, $party_id);
+        return $this->delete($request, $idplayer, $idparty);
     }
 }
