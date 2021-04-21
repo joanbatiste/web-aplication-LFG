@@ -10,14 +10,14 @@ class Message extends Model
     use HasFactory;
     protected $fillable = ['title', 'text', 'creationDate'];
 
-    public function players () {
-        
-        return $this->belongsTo('App\Models\Player','idplayer','id');
-            
+    public function players()
+    {
+
+        return $this->belongsTo('App\Models\Player', 'idplayer', 'id');
     }
-    public function parties () {
-        
-        return $this->belongsTo('App\Models\Party','idparty','id');
-            
+    public function parties()
+    {
+
+        return $this->belongsTo('App\Models\Party', 'idparty', 'id');
     }
 }

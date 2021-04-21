@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Hash;
 class PlayerController extends Controller
 {
     //Función encargada de registrar un nuevo usuario
-    public function registerPlayer(Request $request){
+    public function registerPlayer(Request $request)
+    {
 
         //username, password, email
         $username = $request->input('username');
@@ -22,45 +23,45 @@ class PlayerController extends Controller
         //hasheo del password
         $password = Hash::make($password);
 
-        try{
+        try {
             return Player::create([
                 'username' => $username,
                 'password' => $password,
                 'email' => $email
             ]);
-        } catch (QueryException $error){
+        } catch (QueryException $error) {
             $eCode = $error->errorInfo[1];
 
-            if($eCode == 1062){
+            if ($eCode == 1062) {
                 return response()->json([
-                    'error'=> "Usuario ya registrado"
+                    'error' => "Usuario ya registrado"
                 ]);
             }
         }
-
     }
     //Funcion para el logueo de usuarios
-    public function loginPlayer(Request $request){
+    public function loginPlayer(Request $request)
+    {
 
         $username = $request->input('username');
         $password = $request->input('password');
 
-        try{
+        try {
             $validate_player = Player::select('password')
-            ->where('username', 'LIKE', $username)
-            ->first();
+                ->where('username', 'LIKE', $username)
+                ->first();
 
-            if(!$validate_player){
+            if (!$validate_player) {
                 return response()->json([
-                    'error'=> 'Username o password inválido'
+                    'error' => 'Username o password inválido'
                 ]);
             }
 
-            $hashed = $validate_player-> password;
+            $hashed = $validate_player->password;
 
             //Comprobamos que el password corresponde con el username
 
-            if(Hash::check($password, $hashed)){
+            if (Hash::check($password, $hashed)) {
 
                 //Si se corresponde generamos el token
                 $length = 50;
@@ -68,23 +69,23 @@ class PlayerController extends Controller
 
                 //Guardamos el token en su campo correspondiente, esto es opcional si guardamos el token en la base de datos
                 Player::where('username', $username)
-                ->update(['api_token'=>$token]);
+                    ->update(['api_token' => $token]);
 
                 //devolvemos la informacion del player logueado
                 return Player::where('username', 'LIKE', $username)
-                ->get();
-            }else{
+                    ->get();
+            } else {
                 return response()->json([
-                    'error'=>'Username o password incorrecto'
+                    'error' => 'Username o password incorrecto'
                 ]);
             }
-
-        }catch (QueryException $error){
+        } catch (QueryException $error) {
             return response()->$error;
         }
     }
     //Funcion para actualizar datos de usuario
-    public function updatePlayer(Request $request){
+    public function updatePlayer(Request $request)
+    {
 
         $username = $request->input('username');
         $password = $request->input('password');
@@ -93,33 +94,28 @@ class PlayerController extends Controller
         try {
 
             return Player::where('username', '===', $username)
-            ->update([
-                'username' => $username,
-                'password' => $password,
-                'email' => $email
-            ]);
-
-
-        } catch(QueryException $error) {
+                ->update([
+                    'username' => $username,
+                    'password' => $password,
+                    'email' => $email
+                ]);
+        } catch (QueryException $error) {
             return $error;
         }
     }
 
     //Funcion para desloguearse un usuario
-    public function logoutPlayer(Request $request){
+    public function logoutPlayer(Request $request)
+    {
 
         $id = $request->input('id');
 
         try {
 
             return Player::where('id', '=', $id)
-            ->update(['api_token' => '']);
-            
-
-        } catch(QueryException $error){
+                ->update(['api_token' => '']);
+        } catch (QueryException $error) {
             return $error;
         }
-
     }
-
 }
