@@ -10,17 +10,17 @@ class Membership extends Model
     use HasFactory;
 
     protected $fileable = [
-        'player_id',
-        'party_id'
+        'idplayer',
+        'idparty'
     ];
 
     public function player()
     {
-        return $this->belongsTo('App\Models\Player', 'player_id', 'id');
+        return $this->belongsTo('App\Models\Player', 'idplayer', 'id');
     }
 
     public function party()
     {
-        return $this->belongsTo('App\Models\Party', 'party_id', 'id');
+        return $this->belongsTo('App\Models\Party', 'idparty', 'id');
     }
 }

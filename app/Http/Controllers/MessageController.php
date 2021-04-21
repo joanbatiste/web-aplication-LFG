@@ -28,7 +28,7 @@ class MessageController extends Controller
 
             if ($eCode == 1062) {
                 return response()->json([
-                    'eror' => 'El mensaje no se ha podido crear'
+                    'error' => 'El mensaje no se ha podido crear'
                 ]);
             };
         }
