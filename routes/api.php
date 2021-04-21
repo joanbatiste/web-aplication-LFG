@@ -35,9 +35,6 @@ Route::post('/players/login',[PlayerController::class, 'loginPlayer']);
 
 Route::post('/game/register',[GameController::class, 'registerGame']);
 
-
-//Rutas controladoras de Parties
-Route::post('/party',[PartyController::class, 'createParty']);
 Route::middleware('auth:api')->group(function(){
     //Player
     Route::post('/players/logout',[PlayerController::class, 'logoutPlayer']);
@@ -54,7 +51,7 @@ Route::middleware('auth:api')->group(function(){
     //Parties
     
     Route::post('/games/{id}/parties',[PartyController::class, 'createParty']);
-    Route::get('/games/{id}/parties',[PartyController::class, 'findParty']);
+    Route::get('/games/{id}/parties',[PartyController::class, 'findPartyByGame']);
     Route::get('/parties/{id}',[PartyController::class, 'deleteParty']);
 
     //Games

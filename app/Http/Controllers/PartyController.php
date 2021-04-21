@@ -34,4 +34,14 @@ class PartyController extends Controller
         }
 
     }
+
+    //Buscar partidas por juego
+    public function findPartyByGame($idgame){
+        try{
+            return Party::all()->where('idgame', '=', $idgame);
+
+        }catch (QueryException $error){
+            return $error;
+        }
+    }
 }
