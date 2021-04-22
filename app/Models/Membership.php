@@ -9,7 +9,7 @@ class Membership extends Model
 {
     use HasFactory;
 
-    protected $fileable = [
+    protected $fillable = [
         'idplayer',
         'idparty'
     ];
