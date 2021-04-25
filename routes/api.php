@@ -43,12 +43,6 @@ Route::middleware('auth:api')->group(function(){
     //Membership
     Route::post('/parties/login',[MembershipController::class, 'loginParty']);
     Route::delete('/parties/logout',[MembershipController::class, 'logoutParty']);
-    // Route::get('/parties/{id}/players',[MembershipController::class, 'getPartyPlayers']);
-    // Route::get('/players/{id}/parties',[MembershipController::class, 'getPlayersParties']);
-    // Route::put('/players/{idplayer}/parties/{idparty}', [MembershipController::class, 'createPlayerParty']);
-    // Route::put('/parties/{idparty}/players/{idplayer}', [MembershipController::class, 'createPartyPlayer']);
-    // Route::delete('/players/{idplayer}/parties/{idparty}', [MembershipController::class, 'deletePlayerParty']);
-    // Route::delete('/parties/{idparty}/players/{idplayer}', [MembershipController::class, 'deletePartiesPlayers']);
     
     //Parties
     Route::post('/games/{idgame}/parties',[PartyController::class, 'createParty']);
