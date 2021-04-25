@@ -1,5 +1,7 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
+<h1 align="center"> First project using the ORM - Laravel</h1><a name="TOP"></a>
+
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
@@ -7,56 +9,91 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## First project using the ORM - Laravel
+
+This is our first project using the ORM of LARAVEL.
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tecnologies 👨‍💻
+- **[SQL](https://www.w3schools.com/sql/)**
+- **[PHP](https://www.php.net/manual/es/intro-whatis.php)**
+- **[Laravel](https://laravel.com/) - [Passport](https://laravel.com/docs/8.x/passport)**
+- **[Docker](https://www.docker.com/)**
+- **[Gitflow](https://www.atlassian.com/es/git/tutorials/comparing-workflows/gitflow-workflow)**
+- **[Postman](https://www.postman.com/)**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## UML - SQL 📌
+![image](https://user-images.githubusercontent.com/56218293/115999078-a7bc5500-a5ea-11eb-9aed-adf1de41247a.png)
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Testing with Postman 🎈 
+<h3 style="color">Player</h3>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Action | Metod | URL
+| :--- | ---: | :---:
+Register | POST | http://127.0.0.1:8000/api/players/register
+Login | POST | http://127.0.0.1:8000/api/players/register
+Logout | POST | http://127.0.0.1:8000/api/players/logout
+Update | PUT | http://127.0.0.1:8000/api/players/{id}
 
-## Laravel Sponsors
+    VIDEO
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+<h3>Membership</h3>
 
-### Premium Partners
+Action | Metod | URL
+| :--- | ---: | :---:
+Login-Party | POST | http://127.0.0.1:8000/api/parties/login
+Logout-Party | DELETE | http://127.0.0.1:8000/api/parties/logout
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+    VIDEO  
 
-## Contributing
+<h3>Game</h3>
+    
+Action | Metod | URL
+| :--- | ---: | :---:
+CREATE | POST | http://127.0.0.1:8000/api/game/register
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    VIDEO  
 
-## Code of Conduct
+<h3>Parties</h3>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Action | Metod | URL
+| :--- | ---: | :---:
+CREATE | POST | http://127.0.0.1:8000/api/games/{idgame}/parties
+FIND | GET | http://127.0.0.1:8000/api/games/{id}/parties
+DELETE | DELETE | http://127.0.0.1:8000/api/parties/{id}
 
-## Security Vulnerabilities
+    VIDEO  
+
+<h3>Message</h3>
+
+Action | Metod | URL
+| :--- | ---: | :---:
+CREATE | POST | http://127.0.0.1:8000/api/parties/{id}/messages
+ALL    | GET  | http://127.0.0.1:8000/api/parties/{id}/messages
+UPDATE | PUT  | http://127.0.0.1:8000/api/messages/{id}
+DELETE | DELETE | http://127.0.0.1:8000/api/messages/{id}
+
+    VIDEO  
+
+
+## Git Flow ⛏️
+
+    VIDEO  
+
+## Authors <a name = "authors"> ✍️</a>
+
+- [@Joan](https://github.com/joanbatiste) - Idea & Initial development work
+- [@gianrondo91](https://github.com/GianRondo91) - Idea & Initial development work
+
+## Security Vulnerabilities 🔒	
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+## License 👮‍♂️
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+[Go To TOP](#TOP)
