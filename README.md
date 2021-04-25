@@ -37,7 +37,7 @@ Login | POST | http://127.0.0.1:8000/api/players/register
 Logout | POST | http://127.0.0.1:8000/api/players/logout
 Update | PUT | http://127.0.0.1:8000/api/players/{id}
 
-    VIDEO
+![Crud-players](https://user-images.githubusercontent.com/74936966/116004826-de06ce00-a604-11eb-9e97-b240ed5abe2b.gif)
 
 <h3>Membership</h3>
 
@@ -46,7 +46,7 @@ Action | Metod | URL
 Login-Party | POST | http://127.0.0.1:8000/api/parties/login
 Logout-Party | DELETE | http://127.0.0.1:8000/api/parties/logout
 
-    VIDEO  
+![Membership](https://user-images.githubusercontent.com/74936966/116004887-13132080-a605-11eb-9aef-77606eba089c.gif)
 
 <h3>Game</h3>
     
@@ -54,7 +54,8 @@ Action | Metod | URL
 | :--- | ---: | :---:
 CREATE | POST | http://127.0.0.1:8000/api/game/register
 
-    VIDEO  
+![Game](https://user-images.githubusercontent.com/74936966/116004932-3a69ed80-a605-11eb-81f0-41c87270eb75.gif)
+
 
 <h3>Parties</h3>
 
@@ -64,7 +65,8 @@ CREATE | POST | http://127.0.0.1:8000/api/games/{idgame}/parties
 FIND | GET | http://127.0.0.1:8000/api/games/{id}/parties
 DELETE | DELETE | http://127.0.0.1:8000/api/parties/{id}
 
-    VIDEO  
+![Parties](https://user-images.githubusercontent.com/74936966/116005033-992f6700-a605-11eb-8af3-e60e62f0a14a.gif)
+
 
 <h3>Message</h3>
 
@@ -75,7 +77,7 @@ ALL    | GET  | http://127.0.0.1:8000/api/parties/{id}/messages
 UPDATE | PUT  | http://127.0.0.1:8000/api/messages/{id}
 DELETE | DELETE | http://127.0.0.1:8000/api/messages/{id}
 
-    VIDEO  
+![Messages](https://user-images.githubusercontent.com/74936966/116005097-cb40c900-a605-11eb-8d3a-eddd422a6e21.gif) 
 
 
 ## Git Flow ⛏️
