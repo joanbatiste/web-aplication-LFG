@@ -30,7 +30,7 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 ## Testing with Postman 🎈 
 <h3 style="color">Player</h3>
 
-Action | Metod | URL
+Action | Method | URL
 | :--- | ---: | :---:
 Register | POST | http://127.0.0.1:8000/api/players/register
 Login | POST | http://127.0.0.1:8000/api/players/register
@@ -41,7 +41,7 @@ Update | PUT | http://127.0.0.1:8000/api/players/{id}
 
 <h3>Membership</h3>
 
-Action | Metod | URL
+Action | Method | URL
 | :--- | ---: | :---:
 Login-Party | POST | http://127.0.0.1:8000/api/parties/login
 Logout-Party | DELETE | http://127.0.0.1:8000/api/parties/logout
@@ -50,7 +50,7 @@ Logout-Party | DELETE | http://127.0.0.1:8000/api/parties/logout
 
 <h3>Game</h3>
     
-Action | Metod | URL
+Action | Method | URL
 | :--- | ---: | :---:
 CREATE | POST | http://127.0.0.1:8000/api/game/register
 
@@ -59,7 +59,7 @@ CREATE | POST | http://127.0.0.1:8000/api/game/register
 
 <h3>Parties</h3>
 
-Action | Metod | URL
+Action | Method | URL
 | :--- | ---: | :---:
 CREATE | POST | http://127.0.0.1:8000/api/games/{idgame}/parties
 FIND | GET | http://127.0.0.1:8000/api/games/{id}/parties
@@ -70,7 +70,7 @@ DELETE | DELETE | http://127.0.0.1:8000/api/parties/{id}
 
 <h3>Message</h3>
 
-Action | Metod | URL
+Action | Method | URL
 | :--- | ---: | :---:
 CREATE | POST | http://127.0.0.1:8000/api/parties/{id}/messages
 ALL    | GET  | http://127.0.0.1:8000/api/parties/{id}/messages
