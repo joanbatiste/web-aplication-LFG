@@ -82,7 +82,7 @@ DELETE | DELETE | http://127.0.0.1:8000/api/messages/{id}
 
 ## Git Flow ⛏️
 
-    VIDEO  
+![Grabación de pantalla 2021-04-26 a las 9 53 27](https://user-images.githubusercontent.com/56218293/116048420-6fae2400-a675-11eb-8c04-ecc98899f659.gif) 
 
 ## Authors <a name = "authors"> ✍️</a>
 
